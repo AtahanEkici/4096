@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class Score_Manager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int currentHighestNumber;
+    [SerializeField] private int recordHighestNumber;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private int Score;
+    [SerializeField] private int Highest_Score;
 }

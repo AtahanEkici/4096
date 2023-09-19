@@ -5,6 +5,9 @@ public class Touch_Input_Handler : MonoBehaviour
     [SerializeField] private Vector2 TouchStart;
     [SerializeField] private Vector2 TouchEnd;
 
+    [Header("Minimum Distance for Input Action")]
+    [SerializeField] private float minDistance = 50f;
+
     private void Update()
     {
         RecognizeInput();
@@ -18,13 +21,28 @@ public class Touch_Input_Handler : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             TouchEnd = Input.mousePosition;
+            CreateTile();
             DecideInputAction();
+            
         }
+    }
+    private void CreateTile()
+    {
+        Tile_Manager.Instance.RandomlyAssignATile();
     }
     private void DecideInputAction()
     {
         Vector2 NewVector = TouchStart - TouchEnd;
+        float distance = NewVector.magnitude;
+
+        //Debug.Log(distance);
         //Debug.Log(NewVector);
+
+        if(distance < minDistance) // if the distance requirement is not met return early //
+        {
+            Debug.Log("Minimum distance requirement is not met; Current minimum distance is: "+minDistance+" !"); // Warn the developer about the min distance //
+            return;
+        }
 
         float x_value = NewVector.x;
         float y_value = NewVector.y;
@@ -52,10 +70,6 @@ public class Touch_Input_Handler : MonoBehaviour
             {
                 Debug.Log("Up");
             }
-        }
-
-        
+        } 
     }
-
-    
 }

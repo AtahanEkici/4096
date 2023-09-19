@@ -191,6 +191,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &104111197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104111198}
+  - component: {fileID: 104111199}
+  m_Layer: 0
+  m_Name: TileManager
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &104111198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104111197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &104111199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104111197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abf943621d9a7147a3d753df088141a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tiles: []
+  Empty_Tiles: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TouchStart: {x: 0, y: 0}
   TouchEnd: {x: 0, y: 0}
+  minDistance: 100
 --- !u!1 &1419249980
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1419249981}
+  - component: {fileID: 1419249982}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: GameController
@@ -360,6 +408,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1419249982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419249980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13cf9b47527065447a9a67d82b987754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1528730226
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,3 +477,4 @@ SceneRoots:
   - {fileID: 1345361544}
   - {fileID: 1528730227}
   - {fileID: 1419249981}
+  - {fileID: 104111198}

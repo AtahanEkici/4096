@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+[DefaultExecutionOrder(-1000)]
 public class Grid_Manager : MonoBehaviour
 {
     [SerializeField] private int _width, _height;
-
     [SerializeField] private Tile _tilePrefab;
-
     [SerializeField] private Transform _cam;
 
-    private Dictionary<Vector2, Tile> _tiles;
+    public Dictionary<Vector2, Tile> _tiles;
 
     private void Awake()
     {
@@ -35,7 +34,9 @@ public class Grid_Manager : MonoBehaviour
             {
                 var spawnedTile = Instantiate(_tilePrefab, new Vector2(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
-                spawnedTile.GetComponent<Tile>().CheckOccupation();
+                Tile temp = spawnedTile.GetComponent<Tile>();
+                temp.ChangeNumberText(string.Empty);
+                temp.ChangeOccupation();
 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
 
@@ -44,6 +45,8 @@ public class Grid_Manager : MonoBehaviour
             }
         }
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
+
+        Tile_Manager.Instance.GetTiles(_tiles);
     }
 
     public Tile GetTileAtPosition(Vector2 pos)
