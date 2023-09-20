@@ -16,12 +16,10 @@ public class Grid_Manager : MonoBehaviour
             _cam = Camera.main.transform;
         }
     }
-
     private void Start()
     {
         GenerateGrid();
     }
-
     private void GenerateGrid()
     {
         GameObject baseObject = new("Tiles");
@@ -48,7 +46,6 @@ public class Grid_Manager : MonoBehaviour
 
         Tile_Manager.Instance.GetTiles(_tiles);
     }
-
     public Tile GetTileAtPosition(Vector2 pos)
     {
         if (_tiles.TryGetValue(pos, out var tile)) return tile;

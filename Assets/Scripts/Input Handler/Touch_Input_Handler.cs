@@ -1,6 +1,14 @@
 using UnityEngine;
 public class Touch_Input_Handler : MonoBehaviour
 {
+    public enum Directions
+    {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
+    };
+
     [Header("Mouse Inputs")]
     [SerializeField] private Vector2 TouchStart;
     [SerializeField] private Vector2 TouchEnd;
@@ -21,9 +29,7 @@ public class Touch_Input_Handler : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             TouchEnd = Input.mousePosition;
-            CreateTile();
             DecideInputAction();
-            
         }
     }
     private void CreateTile()
@@ -35,7 +41,7 @@ public class Touch_Input_Handler : MonoBehaviour
         Vector2 NewVector = TouchStart - TouchEnd;
         float distance = NewVector.magnitude;
 
-        //Debug.Log(distance);
+        //Debug.Log("Distance: "+distance);
         //Debug.Log(NewVector);
 
         if(distance < minDistance) // if the distance requirement is not met return early //
@@ -49,15 +55,19 @@ public class Touch_Input_Handler : MonoBehaviour
 
         bool X_value_Is_Bigger = Mathf.Abs(x_value) > Mathf.Abs(y_value);
 
+        CreateTile();
+
         if (X_value_Is_Bigger) // if the x value is greater choose up or down if not choose left or right //
         {
             if (x_value > 0)
             {
                 Debug.Log("Left");
+                Tile_Manager.Instance.MoveTiles(Directions.LEFT);
             }
             else
             {
                 Debug.Log("Right");
+                Tile_Manager.Instance.MoveTiles(Directions.RIGHT);
             }
         }
         else if(!X_value_Is_Bigger)
@@ -65,11 +75,15 @@ public class Touch_Input_Handler : MonoBehaviour
             if (y_value > 0)
             {
                 Debug.Log("Down");
+                Tile_Manager.Instance.MoveTiles(Directions.DOWN);
             }
             else
             {
                 Debug.Log("Up");
+                Tile_Manager.Instance.MoveTiles(Directions.UP);
             }
-        } 
+        }
+
+        
     }
 }

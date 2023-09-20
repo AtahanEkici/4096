@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 public class Tile_Manager : MonoBehaviour
 {
-    public readonly static int Total_Number_Of_Tiles = 16;
+    public static readonly int Total_Number_Of_Tiles = 16;
 
     [Header("Tiles ArrayList")]
     [SerializeField] private List<Tile> Tiles = new();
@@ -13,8 +13,8 @@ public class Tile_Manager : MonoBehaviour
 
     private void Awake()
     {
-        InitializeArrayList();
         CheckInstance();
+        InitializeLists();
     }
     private void CheckInstance()
     {
@@ -25,15 +25,13 @@ public class Tile_Manager : MonoBehaviour
         else
         {
             _instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
     }
-    private void InitializeArrayList()
+    private void InitializeLists()
     {
-        if (Tiles == null)
-        {
-            Tiles = new();
-        }
+        Tiles ??= new();
+        Empty_Tiles ??= new();
     }
     public void GetTiles(Dictionary<Vector2, Tile> _tiles)
     {
@@ -66,8 +64,27 @@ public class Tile_Manager : MonoBehaviour
 
         int Random_Number = Random.Range(0, Empty_Tiles.Count);
 
-        Empty_Tiles[Random_Number].ChangeNumberText(2.ToString());
+        Empty_Tiles[Random_Number].ChangeNumberText(2.ToString()); // issue a random number //
 
         GetEmptyTiles();
+    }
+    public void MoveTiles(Touch_Input_Handler.Directions direction)
+    {
+        if(direction == Touch_Input_Handler.Directions.LEFT)
+        {
+
+        }
+        else if (direction == Touch_Input_Handler.Directions.RIGHT)
+        {
+
+        }
+        else if (direction == Touch_Input_Handler.Directions.DOWN)
+        {
+
+        }
+        else if (direction == Touch_Input_Handler.Directions.UP)
+        {
+
+        }
     }
 }
